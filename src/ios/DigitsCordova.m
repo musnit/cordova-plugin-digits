@@ -1,19 +1,16 @@
 #import "DigitsCordova.h"
+#import <DigitsKit/DigitsKit.h>
 
 @implementation DigitsCordova
 
-- (void)greet:(CDVInvokedUrlCommand*)command
+- (void)openDigitsView:(CDVInvokedUrlCommand*)command
 {
+    self.command = command;
 
-    NSString* callbackId = [command callbackId];
-    NSString* name = [[command arguments] objectAtIndex:0];
-    NSString* msg = [NSString stringWithFormat: @"Hellow, %@", name];
+    [self.commandDelegate runInBackground:^{
+        [self.viewController performSegueWithIdentifier: @"digitize" sender: self];
+    }];
 
-    CDVPluginResult* result = [CDVPluginResult
-                               resultWithStatus:CDVCommandStatus_OK
-                               messageAsString:msg];
-
-    [self success:result callbackId:callbackId];
 }
 
 @end
