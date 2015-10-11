@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.musnit.cordovadigits"
+        version="0.7.0">
+
+  <name>DigitsCordova</name>
+
+  <engines>
+    <engine name="cordova" version=">=3.4.0"/>
+  </engines>
+
+  <asset src="www/digits.js" target="js/digits.js"/>
+
+  <js-module src="www/digits.js" name="digits">
+    <clobbers target="digits" />
+  </js-module>
+
+  <platform name="ios">
+
+    <config-file target="config.xml" parent="/widget">
+      <feature name="DigitsCordova">
+        <param name="ios-package" value="DigitsCordova" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/DigitsCordova.h" target-dir="DigitsCordovaPlugin"/>
+    <source-file src="src/ios/DigitsCordova.m" target-dir="DigitsCordovaPlugin"/>
+  </platform>
+
+</plugin>
