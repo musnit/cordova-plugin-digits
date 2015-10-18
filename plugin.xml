@@ -11,7 +11,7 @@
 
   <asset src="www/digits.js" target="js/digits.js"/>
 
-  <js-module src="www/digits.js" name="digits">
+  <js-module src="www/digits.js" name="openDigitsView">
     <clobbers target="digits" />
   </js-module>
 
