@@ -8,12 +8,12 @@
 
     [self.commandDelegate runInBackground:^{
         self.command = command;
-        
+
         [[Digits sharedInstance] authenticateWithCompletion:^
          (DGTSession* session, NSError *error) {
-             
+
              CDVPluginResult* pluginResult = nil;
-             
+
              if (session) {
                  pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
              } else {
@@ -25,17 +25,30 @@
              NSDictionary *loginResponse = [NSDictionary dictionaryWithObjectsAndKeys:
                                             authHeaders, @"oauth_echo_headers",
                                             nil];
-             
+
              CDVPluginResult* result = [CDVPluginResult
                                         resultWithStatus:CDVCommandStatus_OK
                                         messageAsDictionary:loginResponse
                                         ];
-             
+
              [self success:result callbackId:command.callbackId];
-             
+
          }];
     }];
 
+}
+
+- (void)logoutDigits:(CDVInvokedUrlCommand*)command
+{
+    [self.commandDelegate runInBackground:^{
+        self.command = command;
+
+        [[Digits sharedInstance] logOut];
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_OK
+                                   ];
+        [self success:result callbackId:command.callbackId];
+    }];
 }
 
 @end

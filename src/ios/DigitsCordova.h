@@ -4,5 +4,6 @@
 @property CDVInvokedUrlCommand* command;
 
 - (void) openDigitsView:(CDVInvokedUrlCommand*)command;
+- (void) logoutDigits:(CDVInvokedUrlCommand*)command;
 
 @end
